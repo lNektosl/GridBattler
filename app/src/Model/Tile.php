@@ -8,4 +8,8 @@ public class Tile{
         $this->
         occupant = ?$occupant;
     }
+
+    public function isOccupied():bool{
+        return $this->$occupant != null;
+    }
 }

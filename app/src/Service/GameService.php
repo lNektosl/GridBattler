@@ -15,11 +15,16 @@ public function generateGrid($width, $height): array{
 public function populateGrid($grid): array{
     //place covers 
     int $numCovers = rand(1, 5);
-    for ($i = 0; $i < $numCovers; $i++) {
+    int $coverPlaced = 0
+   while($coverPlaced<$numCovers) {
         $x = rand(0, count($grid) - 1);
         $y = rand(2, count($grid[0]) - 3);
         $cover = new Cover($x, $y);
+        if(isThereMoreThanNeighbout()){
+            continue;
+        }
         $grid[$x][$y]->setOccupant($cover);
+        $coverPlaced++;
     }
     return $grid;
 }
@@ -40,7 +45,9 @@ public function isThereMoreThanNeighbout($grid, $x, $y): bool{
 
     for($i=-1; $i>1;$i++){
         for($j=-1; $j>1;$g++){
-            $grid[$x+i][$y+j]->isOccupied
+            if($grid[$x+i][$y+j]->isOccupied()){
+                $neighbours++
+            }
         }
     }
 
