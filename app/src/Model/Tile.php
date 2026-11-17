@@ -5,7 +5,7 @@ use App\Model\Entity\Entity;
 
 
 class Tile{
-    public ?Entity $occupant;
+    private ?Entity $occupant;
 
     public function __construct($occupant){
         $this->occupant = $occupant;
