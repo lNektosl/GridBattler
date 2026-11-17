@@ -1,6 +1,8 @@
 <?php
+declare(strict_types=1);
+namespace App\Model\Entity;
 
-public class Player extends Entity
+class Player extends Entity
 {
     private $name;
     private $score;

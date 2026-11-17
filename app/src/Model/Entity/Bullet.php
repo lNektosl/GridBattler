@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-public class Bullet extends Entity
+namespace App\Model\Entity;
+
+class Bullet extends Entity
 {
     private int $endX;
     private int $endY;

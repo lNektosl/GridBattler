@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
+namespace App\Model\Entity;
 
-public class Cover extends Entity{
+class Cover extends Entity{
     public function __construct($X, $Y)
     {
-        parent::__construct();
+        parent::__construct($X,$Y);
     }
 
     public function __collision()
