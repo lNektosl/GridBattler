@@ -12,7 +12,6 @@ private array $grid = [];
 public function createNewGrid($width, $height){
 $this->generateGrid($width, $height);
 $this->populateGrid();
-// placePlayers($p1,$p2);
 return $this->grid;
 }
 

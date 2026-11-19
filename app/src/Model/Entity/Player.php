@@ -5,13 +5,13 @@ namespace App\Model\Entity;
 class Player extends Entity
 {
     private $name;
-    private $score;
+    private $endX;
+    private $endY;
 
-    public function __construct($X, $Y, $name, $endCoordinates)
+    public function __construct($name)
     {
         parent::__construct();
         $this->name = $name;
-        $this->endCoordinates = $endCoordinates;
     }
     {
         $this->name = $name;
@@ -27,14 +27,19 @@ class Player extends Entity
         $this->name = $name;
     }
 
-    public getEndCoordinates()
+    public getEndX()
     {
-        return $this->endCoordinates;
+        return $this->endX;
     }
 
-    public function setEndCoordinates($endCoordinates)
+    public getEndY(){
+        return $this->endY;
+    }
+
+    public function setEndXY($x, $y)
     {
-        $this->endCoordinates = $endCoordinates;
+       $this->x = $x;
+       $this->y = $y;
     }
 
     public function __collision()

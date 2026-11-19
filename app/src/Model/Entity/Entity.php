@@ -5,15 +5,12 @@ namespace App\Model\Entity;
 abstract class Entity
 {
     protected $id;
-    private $X;
-    private $Y;
+    private $x;
+    private $y;
 
-    public function __construct($X, $Y)
+    public function __construct()
     {
         $this->id = uniqid();
-        $this->X = $X;
-        $this->Y = $Y;
-        
     }
 
     public function getId()
@@ -21,9 +18,10 @@ abstract class Entity
         return $this->id;
     }
 
-    public function setId($id)
+    public function setXY(string $x, string $y): void
     {
-        $this->id = $id;
+        $this->x = $x;
+        $this->y = $y;
     }
 
     abstract public function __collision();

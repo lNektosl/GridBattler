@@ -7,25 +7,22 @@ class Bullet extends Entity
     private int $endX;
     private int $endY;
 
-    public function:: __construct($X, $Y, $endX, $endY)
+    public function __construct($endX, $endY)
     {
         parent::__construct();
         $this->endX = $endX;
         $this->endY = $endY;
     }
 
-    public function getEndCoordinates()
-    {
-        return $this->endCoordinates;
-    }
 
-    public function setEndCoordinates($endCoordinates)
+    public function setEndXY($endX, $endY): void
     {
-        $this->endCoordinates = $endCoordinates;
+        $this->endX = $endX;
+        $this->endY = $endY;
     }
 
     public function __collision()
     {
-        echo "Collision detected for bullet at coordinates: " . $this->endCoordinates;
+        echo"Boom";
     }
 }
