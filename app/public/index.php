@@ -12,7 +12,6 @@ use function FastRoute\simpleDispatcher;
 $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'home']);
     $r->addRoute('GET', '/hello/{name}', ['App\Controllers\HelloController', 'greet']);
-    $r->addRoute('GET', '/grid',['App\Controllers\GameController', 'getGrid']);
     $r->addRoute('GET', '/game',['App\Controllers\GameController', 'index']);
     $r->addRoute('POST', '/game/start', ['App\Controllers\GameController', 'gameStart']);
 });
