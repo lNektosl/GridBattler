@@ -1,6 +1,8 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Controllers\GameController;
+use App\Services\GridService;
 use FastRoute\RouteCollector;
 use function FastRoute\simpleDispatcher;
 
@@ -41,7 +43,10 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $class = $routeInfo[1][0];
         $method = $routeInfo[1][1];
-        $controller = new $class();
+        $grridServicee = new App\Services\GridService();
+        if($class === App\Controllers\GameController::class) {
+            $controller = new $class($grridServicee);
+        }else{$controller = new $class();}
         $vars = $routeInfo[2];
         $controller->$method($vars);
         break;

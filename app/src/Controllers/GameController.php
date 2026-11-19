@@ -8,9 +8,9 @@ class GameController
 {
     private GameManager $gameManager;
 
-    public function __construct()
+    public function __construct($gamesService)
     {
-        $this->gameManager = new GameManager();
+        $this->gameManager = new GameManager($gamesService);
     }
 
     public function index($vars = [])
@@ -25,7 +25,7 @@ class GameController
     $player1 = $data['player1'] ?? null;
     $player2 = $data['player2'] ?? null;
 
-    
+
     }
 
     public function getGrid($vars = [])
