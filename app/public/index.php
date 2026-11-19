@@ -1,12 +1,4 @@
 <?php
-
-/**
- * This is the central route handler of the application.
- * It uses FastRoute to map URLs to controller methods.
- * 
- * See the documentation for FastRoute for more information: https://github.com/nikic/FastRoute
- */
-
 require __DIR__ . '/../vendor/autoload.php';
 
 use FastRoute\RouteCollector;
@@ -19,6 +11,8 @@ $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'home']);
     $r->addRoute('GET', '/hello/{name}', ['App\Controllers\HelloController', 'greet']);
     $r->addRoute('GET', '/grid',['App\Controllers\GameController', 'getGrid']);
+    $r->addRoute('GET', '/game',['App\Controllers\GameController', 'index']);
+    $r->addRoute('POST', '/game/start', ['App\Controllers\GameController', 'gameStart']);
 });
 
 /**

@@ -18,4 +18,7 @@ class Tile{
     public function setOccupant(?Entity $entity){
         $this->occupant = $entity;
     }
+    public function getOccupant():?Entity{
+        return $this->occupant;
+    }
 }

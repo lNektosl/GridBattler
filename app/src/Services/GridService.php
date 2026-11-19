@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace App\Service;
+namespace App\Services;
 use App\Model\Entity\Cover;
 use App\Model\Tile;
 
