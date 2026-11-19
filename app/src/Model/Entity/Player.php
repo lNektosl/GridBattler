@@ -10,10 +10,7 @@ class Player extends Entity
 
     public function __construct($name)
     {
-        parent::__construct($name);
-        $this->name = $name;
-    }
-    {
+        parent::__construct();
         $this->name = $name;
     }
 
@@ -27,12 +24,12 @@ class Player extends Entity
         $this->name = $name;
     }
 
-    public getEndX()
+    public function getEndX()
     {
         return $this->endX;
     }
 
-    public getEndY(){
+    public function getEndY(){
         return $this->endY;
     }
 

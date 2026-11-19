@@ -18,7 +18,7 @@ abstract class Entity
         return $this->id;
     }
 
-    public function setXY(string $x, string $y): void
+    public function setXY(int $x,int $y): void
     {
         $this->x = $x;
         $this->y = $y;
