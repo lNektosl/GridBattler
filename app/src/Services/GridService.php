@@ -41,15 +41,14 @@ private function populateGrid(){
     }
 }
 
-// private function placePlayers($p1, $p2){
-//     //place players
-//     $p1X = rand(0, count($grid) - 1);
-//     $grid[$p1X][0]->setOccupant($p1);
+public function placePlayers($grid, $p1, $p2){
+    $p1X = rand(0, count($grid) - 1);
+    $grid[$p1X][0]->setOccupant($p1);
 
-//     $p2X = rand(0, count($grid) - 1);
-//     $grid[$p2X][count($grid[0]) - 1]->setOccupant($p2);
+    $p2X = rand(0, count($grid) - 1);
+    $grid[$p2X][count($grid[0]) - 1]->setOccupant($p2);
 
-// }
+}
 
 public function isThereMoreThanNeighbout($x, $y): bool{
     $neighbours = 0;

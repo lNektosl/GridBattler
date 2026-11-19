@@ -2,30 +2,30 @@
 
 namespace App\Controllers;
 
-use App\Services\GridService;
+use App\Services\GameManager;
 
 class GameController
 {
-    private GridService $gridService;
+    private GameManager $gameManager;
 
     public function __construct()
     {
-        $this->gridService = new GridService();
+        $this->gameManager = new GameManager();
     }
 
     public function index($vars = [])
     {
-    $grid = $this->gridService->createNewGrid(5, 5);
-
-      require __DIR__ . '/../Views/game.php';
+      require __DIR__ . '/../Views/players.php';
     }
 
-    public function gameStart($vars = [])
+    public function gameStart()
     {
     $data = json_decode(file_get_contents('php://input'), true);
 
     $player1 = $data['player1'] ?? null;
     $player2 = $data['player2'] ?? null;
+
+    
     }
 
     public function getGrid($vars = [])
