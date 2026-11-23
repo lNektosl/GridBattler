@@ -12,12 +12,11 @@ use App\Model\Tile;
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/script.js"></script>
 </head>
 
 <body>
 <?php $players = []; ?>
-    <table class="table table-borderless game-grid">
+    <table class="table table-borderless game-grid" id="gameTable">
 
         <thead>
         <tr>
