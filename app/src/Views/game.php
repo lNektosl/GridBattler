@@ -1,4 +1,5 @@
 <?php
+
 use App\Model\Entity\Player;
 use App\Model\Entity\Cover;
 use App\Model\Tile;
@@ -15,28 +16,30 @@ use App\Model\Tile;
 </head>
 
 <body>
-<?php $players = []; ?>
+    <?php $players = []; ?>
     <table class="table table-borderless game-grid" id="gameTable">
 
         <thead>
-        <tr>
-            <th></th>
-            <?php for ($x = 1; $x <= count($grid[0]); $x++): ?> 
-            <th><?= $x ?></th>
-            <?php endfor; ?>
-        </tr>
+            <tr>
+                <th></th>
+                <?php for ($x = 1; $x <= count($grid[0]); $x++): ?>
+                    <th><?= $x ?></th>
+                <?php endfor; ?>
+            </tr>
         </thead>
 
         <tbody>
             <?php foreach ($grid as $y => $row): ?>
                 <tr>
-                    <th><?= chr(65+$y) ?></th>
+                    <th><?= chr(65 + $y) ?></th>
                     <?php foreach ($row as $tile): ?>
                         <td class="tile">
-                            <?php if ($tile->getOccupant() !== null && $tile->getOccupant() instanceof Player): { $players[] = [
-    'x' => $tile->getOccupant()->getX(),
-    'y' => $tile->getOccupant()->getY()
-];} ?>
+                            <?php if ($tile->getOccupant() !== null && $tile->getOccupant() instanceof Player): {
+                                    $players[] = [
+                                        'x' => $tile->getOccupant()->getX(),
+                                        'y' => $tile->getOccupant()->getY()
+                                    ];
+                                } ?>
                                 @
                             <?php elseif ($tile->getOccupant() !== null && $tile->getOccupant() instanceof Cover): ?>
                                 #
@@ -52,13 +55,13 @@ use App\Model\Tile;
 
     <div id="CommandInput">
         <input type="text" id="command" placeholder="Enter command">
-        <button id="submitCommand">Submit</button>
+        <button id="submit">Submit</button>
     </div>
 </body>
 
 <script>
     const players = <?= json_encode($players) ?>;
 </script>
-    <script src="/js/script.js"></script>
+<script src="/js/script.js"></script>
 
 </html>
