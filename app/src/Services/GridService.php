@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Services;
+
 use App\Model\Entity\Cover;
 use App\Model\Tile;
 
@@ -62,7 +65,7 @@ class GridService
         $p1->setXY(0, $p1y);
 
         $p2y = rand(0, count($grid[0]) - 1);
-        $grid[count($grid[0]) - 1 ][$p2y]->setOccupant($p2);
+        $grid[count($grid[0]) - 1][$p2y]->setOccupant($p2);
         $p2->setXY(count($grid[0]) - 1, $p2y);
     }
 

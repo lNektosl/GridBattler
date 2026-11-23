@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Model\Entity;
 
 class Player extends Entity
@@ -29,14 +31,15 @@ class Player extends Entity
         return $this->endX;
     }
 
-    public function getEndY(){
+    public function getEndY()
+    {
         return $this->endY;
     }
 
     public function setEndXY($x, $y)
     {
-       $this->x = $x;
-       $this->y = $y;
+        $this->x = $x;
+        $this->y = $y;
     }
 
     public function __collision()

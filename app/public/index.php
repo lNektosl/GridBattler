@@ -12,7 +12,7 @@ use function FastRoute\simpleDispatcher;
 $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'home']);
     $r->addRoute('GET', '/hello/{name}', ['App\Controllers\HelloController', 'greet']);
-    $r->addRoute('GET', '/game',['App\Controllers\GameController', 'index']);
+    $r->addRoute('GET', '/game', ['App\Controllers\GameController', 'index']);
     $r->addRoute('POST', '/game/start', ['App\Controllers\GameController', 'gameStart']);
 });
 
@@ -43,9 +43,11 @@ switch ($routeInfo[0]) {
         $class = $routeInfo[1][0];
         $method = $routeInfo[1][1];
         $grridServicee = new App\Services\GridService();
-        if($class === App\Controllers\GameController::class) {
+        if ($class === App\Controllers\GameController::class) {
             $controller = new $class($grridServicee);
-        }else{$controller = new $class();}
+        } else {
+            $controller = new $class();
+        }
         $vars = $routeInfo[2];
         $controller->$method($vars);
         break;

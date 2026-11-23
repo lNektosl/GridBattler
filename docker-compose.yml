@@ -1,3 +1,4 @@
+name: grid
 services:
     nginx:
         image: nginx:1.30
