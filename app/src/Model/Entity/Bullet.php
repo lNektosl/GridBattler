@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Model\Entity;
 
 class Bullet extends Entity
@@ -21,8 +23,18 @@ class Bullet extends Entity
         $this->endY = $endY;
     }
 
+    public function getEndX(): int
+    {
+        return $this->endX;
+    }
+
+    public function getEndY(): int
+    {
+        return $this->endY;
+    }
+
     public function __collision()
     {
-        echo"Boom";
+        echo "Boom";
     }
 }
