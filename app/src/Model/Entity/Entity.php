@@ -23,6 +23,15 @@ abstract class Entity
         $this->x = $x;
         $this->y = $y;
     }
+    public function getX(): int
+    {
+        return $this->x;
+    }
 
+    public function getY(): int
+    {
+        return $this->y;
+    }
+    
     abstract public function __collision();
 }

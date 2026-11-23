@@ -16,7 +16,7 @@ use App\Model\Tile;
 </head>
 
 <body>
-
+<?php $players = []; ?>
     <table class="table table-borderless game-grid">
 
         <thead>
@@ -34,7 +34,10 @@ use App\Model\Tile;
                     <th><?= chr(65+$y) ?></th>
                     <?php foreach ($row as $tile): ?>
                         <td class="tile">
-                            <?php if ($tile->getOccupant() !== null && $tile->getOccupant() instanceof Player): ?>
+                            <?php if ($tile->getOccupant() !== null && $tile->getOccupant() instanceof Player): { $players[] = [
+    'x' => $tile->getOccupant()->getX(),
+    'y' => $tile->getOccupant()->getY()
+];} ?>
                                 @
                             <?php elseif ($tile->getOccupant() !== null && $tile->getOccupant() instanceof Cover): ?>
                                 #
@@ -53,5 +56,10 @@ use App\Model\Tile;
         <button id="submitCommand">Submit</button>
     </div>
 </body>
+
+<script>
+    const players = <?= json_encode($players) ?>;
+</script>
+    <script src="/js/script.js"></script>
 
 </html>

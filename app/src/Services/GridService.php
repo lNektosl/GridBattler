@@ -34,8 +34,8 @@ class GridService
         $coverPlaced = 0;
         $attempts = 0;
         while ($coverPlaced < $numCovers) {
-            $x = rand(0, count($this->grid) - 1);
-            $y = rand(2, count($this->grid[0]) - 3);
+            $y = rand(0, count($this->grid) - 1);
+            $x = rand(2, count($this->grid[0]) - 3);
 
             if ($this->grid[$x][$y]->isOccupied()) {
                 continue;
@@ -57,12 +57,13 @@ class GridService
 
     public function placePlayers($grid, $p1, $p2)
     {
-        $p1X = rand(0, count($grid) - 1);
-        $grid[$p1X][0]->setOccupant($p1);
+        $p1y = rand(0, count($grid[0]) - 1);
+        $grid[0][$p1y]->setOccupant($p1);
+        $p1->setXY(0, $p1y);
 
-        $p2X = rand(0, count($grid) - 1);
-        $grid[$p2X][count($grid[0]) - 1]->setOccupant($p2);
-
+        $p2y = rand(0, count($grid[0]) - 1);
+        $grid[count($grid[0]) - 1 ][$p2y]->setOccupant($p2);
+        $p2->setXY(count($grid[0]) - 1, $p2y);
     }
 
     public function isThereMoreThanNeighbout($x, $y): bool
