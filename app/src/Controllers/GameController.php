@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Services\GameManager;
+use App\Model\Action;
 
 class GameController
 {
@@ -40,10 +41,11 @@ class GameController
         $p2Actions = [];
 
         foreach ($commands as $command) {
-            if ($command['player'] === 'player 1') {
-                $p1Actions[] = $command;
-            } elseif ($command['player'] === 'player 2') {
-                $p2Actions[] = $command;
+            $action = Action::constructFromArray($command);
+            if ($action->getPlayer() === 'player 1') {
+                $p1Actions[] = $action;
+            } elseif ($action->getPlayer() === 'player 2') {
+                $p2Actions[] = $action;
             }
         }
 
