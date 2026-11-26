@@ -10,25 +10,32 @@ const p1 = table.rows[players[0].x + 1].cells[players[0].y + 1];
 const p2 = table.rows[players[1].x + 1].cells[players[1].y + 1];
 
 const commandHistory = [];
+const allCommands = [];
 let historyIndex = -1;
 const MAX_HISTORY = 10;
+const PLAYER1 = 'player 1';
+const PLAYER2 = 'player 2';
 
 p1.style.color = 'red';
 p2.style.color = 'blue';
 
+const commandLabel = document.getElementById('commandLabel');
 const commandInput = document.getElementById('command');
 const button = document.getElementById('submit');
+let activePlayer = PLAYER1;
 
-button.addEventListener('click', () => { sendCommand() });
+let commandEntered = 0;
+
+button.addEventListener('click', () => { addCommand() });
 commandInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-        sendCommand();
+        addCommand();
     }
 });
 
 commandInput.addEventListener('keydown', navigateCommandHistory);
 
-function sendCommand() {
+function addCommand() {
     const command = commandInput.value.trim();
 
     if (command === '') {
@@ -47,7 +54,19 @@ function sendCommand() {
     if (!json) {
         return;
     }
-    console.log('Command JSON:', json);
+    commandEntered++;
+    allCommands.push(json);
+    if (commandEntered === 5) {
+        commandEntered = 0;
+        if (activePlayer === PLAYER1) {
+            activePlayer = PLAYER2;
+            commandLabel.textContent = "Player 2's turn";
+        } else {
+            activePlayer = PLAYER1;
+            commandLabel.textContent = "Player 1's turn";
+            sendCommandsToServer(allCommands);
+        }
+    }
 }
 
 function validateCommand(command) {
@@ -136,6 +155,7 @@ function executeCommand(commandName, args) {
 
 function createJSON(commandName, args) {
     const json = {
+        player: activePlayer,
         commandName: commandName,
         direction: args.length === 1 ? args[0] : null,
         target: args.length === 2 ? { x: args[0], y: args[1] } : null
@@ -186,5 +206,35 @@ function navigateCommandHistory(event) {
             historyIndex = -1;
             commandInput.value = '';
         }
+    }
+}
+
+async function sendCommandsToServer(commands) {
+    try {
+        const response = await fetch('/api/commands', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                commands: commands
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        console.log('Player 1 actions:', data.p1Actions);
+        console.log('Player 2 actions:', data.p2Actions);
+
+        if (data.success) {
+            allCommands.length = 0;
+        }
+
+    } catch (error) {
+        console.error('Error sending commands:', error);
     }
 }

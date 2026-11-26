@@ -14,6 +14,7 @@ $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/hello/{name}', ['App\Controllers\HelloController', 'greet']);
     $r->addRoute('GET', '/game', ['App\Controllers\GameController', 'index']);
     $r->addRoute('POST', '/game/start', ['App\Controllers\GameController', 'gameStart']);
+    $r->addRoute('POST', '/api/commands', ['App\Controllers\GameController', 'processCommands']);
 });
 
 /**

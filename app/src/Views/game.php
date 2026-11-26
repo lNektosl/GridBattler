@@ -54,6 +54,7 @@ use App\Model\Tile;
     </table>
 
     <div id="CommandInput">
+        <label id="commandLabel" for="command">Player 1 moves</label>
         <input type="text" id="command" placeholder="Enter command">
         <button id="submit">Submit</button>
     </div>
