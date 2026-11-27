@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use App\Events\EventBus;
+
 class Player extends Entity
 {
-    private $name;
-    private $endX;
-    private $endY;
+    private string $name;
+    private int $endX;
+    private int $endY;
+    private EventBus $bus;
 
-    public function __construct($name)
+    public function __construct(string $name, EventBus $bus)
     {
         parent::__construct();
         $this->name = $name;
+        $this->bus = $bus;
     }
 
     public function getName()
@@ -21,7 +25,7 @@ class Player extends Entity
         return $this->name;
     }
 
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -36,10 +40,10 @@ class Player extends Entity
         return $this->endY;
     }
 
-    public function setEndXY($x, $y)
+    public function setEndXY(int $x, int $y)
     {
-        $this->x = $x;
-        $this->y = $y;
+        $this->endX = $x;
+        $this->endY = $y;
     }
 
     public function __collision()

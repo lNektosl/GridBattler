@@ -27,7 +27,34 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 /**
  * Switch on the dispatcher result and call the appropriate controller method if found.
  */
-// TODO: add a proper HTML view for error states below.
+// TODO: add a proper HTML view for error states below
+
+// Infrastructure
+$eventBus = new App\Events\EventBus();
+
+// Factories
+$entityFactory = new App\Factory\EntityFactory($eventBus);
+
+// Services
+$gridService = new App\Services\GridService(
+    $entityFactory
+);
+
+// Manager
+
+$gameManager = new App\Managers\GameManager(
+    $gridService, $entityFactory
+);
+
+// Controllers
+$gameController = new App\Controllers\GameController(
+    $gameManager
+);
+
+$controllers = [
+    App\Controllers\GameController::class => $gameController,
+];
+
 switch ($routeInfo[0]) {
     // Handle not found routes
     case FastRoute\Dispatcher::NOT_FOUND:
@@ -44,11 +71,7 @@ switch ($routeInfo[0]) {
         $class = $routeInfo[1][0];
         $method = $routeInfo[1][1];
         $grridServicee = new App\Services\GridService();
-        if ($class === App\Controllers\GameController::class) {
-            $controller = new $class($grridServicee);
-        } else {
-            $controller = new $class();
-        }
+        $controller = $controllers[$class] ?? new $class();
         $vars = $routeInfo[2];
         $controller->$method($vars);
         break;

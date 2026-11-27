@@ -2,16 +2,16 @@
 
 namespace App\Controllers;
 
-use App\Services\GameManager;
+use App\Managers\GameManager;
 use App\Model\Action;
 
 class GameController
 {
     private GameManager $gameManager;
 
-    public function __construct($gamesService)
+    public function __construct(GameManager $gameManager)
     {
-        $this->gameManager = new GameManager($gamesService);
+        $this->gameManager = $gameManager;
     }
 
     public function index($vars = [])

@@ -6,9 +6,9 @@ namespace App\Model\Entity;
 
 abstract class Entity
 {
-    protected $id;
-    private $x;
-    private $y;
+    protected string $id;
+    private int $x;
+    private int $y;
 
     public function __construct()
     {

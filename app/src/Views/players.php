@@ -12,8 +12,8 @@
 <body>
 
     <form action="game/start" method="POST">
-        <input type="text" name="Player1">
-        <input type="text" name="Player2">
+        <input type="text" name="player1">
+        <input type="text" name="player2">
         <button type="submit">Start Game</button>
     </form>
 

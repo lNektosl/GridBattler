@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Model\Entity\Cover;
+use App\Model\Entity\Player;
 use App\Model\Tile;
 
 class GridService
@@ -13,14 +14,14 @@ class GridService
     private array $grid = [];
 
 
-    public function createNewGrid($width, $height)
+    public function createNewGrid(int $width, int $height)
     {
         $this->generateGrid($width, $height);
         $this->populateGrid();
         return $this->grid;
     }
 
-    private function generateGrid($width, $height)
+    private function generateGrid(int $width, int $height)
     {
         for ($x = 0; $x < $width; $x++) {
             for ($y = 0; $y < $height; $y++) {
@@ -58,7 +59,7 @@ class GridService
         }
     }
 
-    public function placePlayers($grid, $p1, $p2)
+    public function placePlayers(array $grid, Player $p1, Player $p2)
     {
         $p1y = rand(0, count($grid[0]) - 1);
         $grid[0][$p1y]->setOccupant($p1);
@@ -69,7 +70,7 @@ class GridService
         $p2->setXY(count($grid[0]) - 1, $p2y);
     }
 
-    public function isThereMoreThanNeighbout($x, $y): bool
+    public function isThereMoreThanNeighbout(int $x, int $y): bool
     {
         $stack = [[$x, $y]];
         $visited = [];
